@@ -58,9 +58,9 @@ CL-USER> (delete-duplicates-sequence '(1 1 2 3 3 3 2 2 a a a b) 3)
 ```lisp
 CL-USER> (test-spread-values)
 passed... Regular input
-passed... No duplicates
-passed... All duplicates
-passed... Different length sequence
+passed... All nils
+passed... No nils
+passed... Mixed nils
 
 ```
 
@@ -97,7 +97,7 @@ passed... Different length sequence
 ```lisp
 CL-USER> (test-spread-values)
 passed... Regular input
-passed... All nils
-passed... No nils
-passed... Mixed nils
+passed... No duplicates
+passed... All duplicates
+passed... Different length sequence
 ```
