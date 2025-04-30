@@ -67,19 +67,18 @@ passed... Mixed nils
 ## Лістинг функції delete-duplicates-sequence
 ```lisp
 (defun delete-duplicates-sequence (lst n)
-  (let ((prev nil) (count 0))
+  (labels ((helper (lst prev count)
+             (cond
+               ((null lst) nil)
+               ((equal (car lst) prev)
+                (if (< count n)
+                    (cons (car lst) (helper (cdr lst) prev (1+ count)))
+                    (helper (cdr lst) prev count)))
+               (t
+                (cons (car lst) (helper (cdr lst) (car lst) 1))))))
     (if (null lst)
         nil
-        (let ((current (car lst)))
-          (if (eq current prev)  
-              (if (>= count n)  
-                  (delete-duplicates-sequence (cdr lst) n)
-                  (progn
-                    (setq count (1+ count))  
-                    (cons current (delete-duplicates-sequence (cdr lst) n))))
-              (progn
-                (setq count 1) 
-                (cons current (delete-duplicates-sequence (cdr lst) n))))))))
+        (cons (car lst) (helper (cdr lst) (car lst) 1)))))
 ```
 
 ### Тестові набори
